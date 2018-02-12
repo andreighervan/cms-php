@@ -24,11 +24,12 @@
             <div class="col-lg-12">
                 <ul class="list-unstyled">
                     <?php
-                    $query="SELECT * FROM categories LIMIT 3";
+                    $query="SELECT * FROM categories LIMIT 5";
                     $select_categories_sidebar=mysqli_query($conn,$query);
                     while($row=mysqli_fetch_assoc($select_categories_sidebar)){
+                        $cat_id=$row['cat_id'];
                         $cat_title=$row['cat_title'];
-                        echo "<li><a href='#'> {$cat_title}</a></li>";
+                        echo "<li><a href='category.php?category=$cat_id'> {$cat_title}</a></li>";
                     }
                     ?>
                 </ul>

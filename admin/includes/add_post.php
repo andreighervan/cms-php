@@ -2,12 +2,11 @@
 if(isset($_POST['create_post'])){
     $post_author = $_POST['post_author'];
     $post_title = $_POST['post_title'];
-    $post_category_id = $_POST['post_category_id'];
+    $post_category_id = $_POST['post_category'];
     $post_status = $_POST['post_status'];
     $post_image = $_FILES['post_image']['name'];
     $post_image_temp=$_FILES['post_image']['tmp_name'];
     $post_tags = $_POST['post_tags'];
-    $post_comment_count = 4;
     $post_content = $_POST['post_content'];
     $post_date = date('d-m-y');
     move_uploaded_file($post_image_temp,"../images/$post_image");
@@ -17,6 +16,7 @@ if(isset($_POST['create_post'])){
     if(!$create_post_query){
         die('query failed '.mysqli_error($conn));
     }
+
 }
 ?>
 <form action="" enctype="multipart/form-data" method="post">
@@ -25,8 +25,18 @@ if(isset($_POST['create_post'])){
         <input type="text" class="form-control" name="post_title">
     </div>
     <div class="form-group">
-        <label for="post_category_id">Post category id</label>
-        <input type="text" class="form-control" name="post_category_id">
+        <label for="post_category_id">Post category</label>
+        <select name="post_category" id="" class="form-control" style="width: 150px;">
+            <?php
+            $query = "SELECT * FROM categories";
+            $select_categories = mysqli_query($conn, $query);
+            while ($row = mysqli_fetch_assoc($select_categories)) {
+                $cat_id = $row['cat_id'];
+                $cat_title = $row['cat_title'];
+            }
+            echo "<option value='$cat_id'>{$cat_title}</option>";
+            ?>
+        </select>
     </div>
     <div class="form-group">
         <label for="post_author">Post author</label>

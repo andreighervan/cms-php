@@ -23,14 +23,14 @@ include 'includes/admin_header.php';
                         $source='';
                     }
                     switch($source){
-                        case 'add_post':
-                            include 'includes/add_post.php';
+                        case 'add_user':
+                            include 'includes/add_user.php';
                             break;
-                        case 'edit_post':
-                            include 'includes/edit_post.php';
+                        case 'edit_user':
+                            include 'includes/edit_user.php';
                             break;
                         default:
-                            include 'view_all_posts.php';
+                            include 'view_all_users.php';
                     }
                     ?>
                 </div>
